@@ -53,7 +53,7 @@
 .top-buffer { margin-top:50px; }
 .field-container{
     border: 2px solid rgb(60, 123, 196);
-    width: fit-content
+    display: inline-block;
 }
 .no-close .ui-dialog-titlebar-close {
     display: none;
