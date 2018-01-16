@@ -1,7 +1,8 @@
 (function(SeaBattle,$){
 
     /**
-     * 
+     * Represent matrix based on two dimensional array
+     * @constructor
      */
     SeaBattle.Matrix = function (){
         this.matrix=[];
@@ -76,7 +77,10 @@
             return this.matrix[x][y];
         }
     }
-
+    /**
+     * Matrix with info about ships locations on field
+     * @constructor
+     */
     SeaBattle.ShipMatrix = function (){
 
         Matrix.apply(this);
@@ -128,6 +132,11 @@
     let ShipMatrix=SeaBattle.ShipMatrix;
     extend(ShipMatrix, Matrix);
 
+    /**
+     * Matrix with info about cpu attacks
+     * 
+     * @constructor
+     */
     SeaBattle.AttackMatrix = function(){
         
         Matrix.apply(this);    

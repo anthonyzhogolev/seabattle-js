@@ -1,5 +1,11 @@
 (function(SeaBattle,$){
-
+    /**
+     * Player is function to make attacks on ships and processing attacks results
+     * 
+     * @constructor
+     * @param {String} name 
+     * @param {SeaBattle.Field} targetField 
+     */
     SeaBattle.Player= function (name,targetField){
 
         this.name=name;
@@ -15,12 +21,25 @@
 
     let Player=SeaBattle.Player,AttackMatrix=SeaBattle.AttackMatrix;
     
+    /**
+     * Computer
+     * @param {String} name 
+     * @param {SeaBattle.Field} targetField 
+     */
     SeaBattle.CompPlayer = function(name,targetField){
     
         Player.apply(this,arguments);
         let attackMatrix = new AttackMatrix();
+        /**
+         * @type {<Array.<Array <Number,Number>>}
+         */
         let currentAttackedShipCoords = [];
         
+        /**
+         * Funtion attack returns coords for next attack.Coords can be random 
+         * if there is no damaged ships o field.
+         * @returns {Promise}
+         */
         this.attack=function(){
             let _this = this;
             return new Promise(function(resolveCallback,rejectCallback){
@@ -35,7 +54,12 @@
         function shipIsFound(){
             return currentAttackedShipCoords.length;
         }
-    
+        
+        /**
+         * Funtion attack returns coords for next attack.Coords can be random 
+         * if there is no damaged ships o field.
+         * @returns  {<Array.<Array <Number,Number>>}
+         */
         this.getNextAttackCoords=function(){
             if(shipIsFound()){
                 let lastAttackedCoord = currentAttackedShipCoords[currentAttackedShipCoords.length-1],
@@ -54,6 +78,11 @@
             } 
         }
         
+        /**
+         * Funtion takes status of last attack and update attackMatrix
+         * @param  {<Array.<Array <Number,Number>>} lastAttackCoords
+         * @param {Number} result
+         */
         this.processAttackResult = function(lastAttackCoords,result){
             let Field=SeaBattle.Field,AttackMatrix=SeaBattle.AttackMatrix;
             let [lastAttackX,lastAttackY] = lastAttackCoords;
@@ -94,8 +123,19 @@
         }
     }
 
+    /**
+     * Human player
+     * @constructor
+     * @param {String} name 
+     * @param {SeaBattle.Field} targetField 
+     */
     SeaBattle.HumanPlayer = function(name,targetField){
         Player.apply(this,arguments);
+        
+        /**
+         * Creates handler for click on cell of enemy field  
+         * @returns {Promise}
+         */
         this.attack = function(){
             return new Promise(function(resolveCallback,rejectCallback){
                 $('#comp-field-container .cell').click(function(){

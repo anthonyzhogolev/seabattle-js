@@ -6,7 +6,7 @@
     Cell=SeaBattle.Cell;
 
     /**
-     * Field i
+     * Field is provides response for player attacks and manages cells and ships
      * @constructor
      * @param {<Object>} config 
      */

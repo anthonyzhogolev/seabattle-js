@@ -1,6 +1,13 @@
 
 (function(SeaBattle,$){
-
+    /**
+     * Cell is function to render cells in fields
+     * @constructor
+     * @interface
+     * @param {Number} x 
+     * @param {Number} y 
+     * @param {<SeaBattle.Field>} field 
+     */
      SeaBattle.Cell = function(x,y,field){
     
         /**
@@ -31,7 +38,7 @@
         this.y=y;
         
         /**
-         * @type {Field}
+         * @type {SeaBattle.Field}
          */
         this.field=field;
         
@@ -78,6 +85,15 @@
         }
     }
 
+    /**
+     * ClosedCell renders cells with no rendered ships(for computer field)
+     * 
+     * @constructor
+     * 
+     * @param {Number} x 
+     * @param {Number} y 
+     * @param {SeaBattle.Field} field 
+     */
     SeaBattle.ClosedCell = function (x,y,field){
         Cell.apply(this,arguments);
         this.render=function(){
@@ -127,10 +143,19 @@
         }
     }
     
-    extend(SeaBattle.ClosedCell,Cell); 
 
+    extend(SeaBattle.ClosedCell,Cell); 
+    
     let ClosedCell = SeaBattle.ClosedCell;
 
+    /**
+     * Opened Cell is renders cells with rendered ships
+     * 
+     * @constructor
+     * @param {Number} x 
+     * @param {Number} y 
+     * @param {SeaBattle.Field} field 
+     */
     SeaBattle.OpenedCell = function (x,y,field){
         Cell.apply(this,arguments);
     

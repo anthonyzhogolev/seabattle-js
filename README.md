@@ -1,1 +1,1 @@
-# seabattle-js
+# Sea Battle Game on JavaScript
