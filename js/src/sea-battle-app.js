@@ -36,6 +36,7 @@
         let $statusBarContainer = config.statusBar,
         $dialogContainer=config.dialog,
         $playerFieldContainer=config.playerFieldContainer,        
+        $compFieldContainer=config.compFieldContainer,        
         $computerNameContainer=config.computerName,
         $runButton=config.runButton,
         $playerNameContainer=config.playerName;
